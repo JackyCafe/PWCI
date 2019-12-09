@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/medical_fragment"
+            android:icon="@drawable/ic_one"
+            android:title="醫學院" />
+        <item
+            android:id="@+id/chat_fragment"
+            android:icon="@drawable/ic_two"
+            android:title="聊天室" />
+        <item
+            android:id="@+id/game_fragment"
+            android:icon="@drawable/ic_three"
+            android:title="遊戲室" />
+        <item android:title="其他">
+            <menu>
+                <group android:checkableBehavior="single">
+                    <item
+                        android:title="設定" />
+                    <item
+                        android:title="登入" />
+                </group>
+            </menu>
+        </item>
+    </group>
+</menu>
