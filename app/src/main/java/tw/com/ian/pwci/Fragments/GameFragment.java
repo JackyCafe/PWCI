@@ -1,6 +1,7 @@
 package tw.com.ian.pwci.Fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,6 +24,7 @@ import tw.com.ian.pwci.Initializer;
  * A simple {@link Fragment} subclass.
  */
 public class GameFragment extends Fragment implements TextToSpeech.OnInitListener {
+    private static final int MY_DATA_CHECK_CODE = 988;
     private FrameLayout frameLayout;
     private TextToSpeech tts;
     private TextView tv;
@@ -42,6 +44,8 @@ public class GameFragment extends Fragment implements TextToSpeech.OnInitListene
         btn = v.findViewById(R.id.mread);
         tts = new Initializer().tts;
         tts = new TextToSpeech(getContext(), this);
+
+
 
 
         btn.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +79,7 @@ public class GameFragment extends Fragment implements TextToSpeech.OnInitListene
                 Log.e("Jacky", "This Language is not supported");
 
             } else {
+                tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);     //發音
                 tts.setPitch(0.7f);    //語調(1為正常語調；0.5比正常語調低一倍；2比正常語調高一倍)
                 tts.setSpeechRate(0.7f);    //速度(1為正常速度；0.5比正常速度慢一倍；2比正常速度快一倍)
              }} else {
@@ -82,6 +87,8 @@ public class GameFragment extends Fragment implements TextToSpeech.OnInitListene
         }
 
     }
+
+
 
     @Override
     public void onDestroy() {
