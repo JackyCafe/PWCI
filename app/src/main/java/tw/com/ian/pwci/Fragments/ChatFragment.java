@@ -34,7 +34,7 @@ import tw.com.ian.pwci.R;
 import static android.app.Activity.RESULT_OK;
 
 
-public class ChatFragment extends Fragment implements TextToSpeech.OnInitListener {
+public class ChatFragment extends Fragment   {
     private static final int REQUEST_CODE = 007;
     private ImageView mic;
     private EditText inputText;
@@ -72,13 +72,14 @@ public class ChatFragment extends Fragment implements TextToSpeech.OnInitListene
             quiz_array[j] = tmp;
         }
 
-        tts = new Initializer().tts;
-        tts = new TextToSpeech(getContext(), this);
+        Initializer initializer = (Initializer) getActivity().getApplication();
+        tts = initializer.tts;
 
         mic = v.findViewById(R.id.mic);
         inputText = v.findViewById(R.id.inputText);
         send = v.findViewById(R.id.send);
         putMsg(1);
+        tts.speak(msgList.get(0).getMsg().toString(),TextToSpeech.QUEUE_ADD,null,null);
         adapter = new MsgAdapter(msgList);
         adapter.notifyDataSetChanged();
         msgView = (RecyclerView) v.findViewById(R.id.msgView);
@@ -214,19 +215,5 @@ public class ChatFragment extends Fragment implements TextToSpeech.OnInitListene
         }
     }
 
-    @Override
-    public void onInit(int status) {
-        if (status == TextToSpeech.SUCCESS) {
-            int result = tts.setLanguage(Locale.TRADITIONAL_CHINESE);    //設定語言為中文
-            if (result == TextToSpeech.LANG_MISSING_DATA
-                    || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                Log.e("Jacky", "This Language is not supported");
 
-            } else {
-                tts.setPitch(0.7f);    //語調(1為正常語調；0.5比正常語調低一倍；2比正常語調高一倍)
-                tts.setSpeechRate(0.7f);    //速度(1為正常速度；0.5比正常速度慢一倍；2比正常速度快一倍)
-            }} else {
-            Log.e("Jacky", "Initilization Failed!");
-        }
-    }
 }
