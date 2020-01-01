@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,11 +20,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import tw.com.ian.pwci.Adapter.MsgAdapter;
 import tw.com.ian.pwci.DAO.QuizDAO;
-import tw.com.ian.pwci.Initializer;
+import tw.com.ian.pwci.Util.Initializer;
 import tw.com.ian.pwci.Interface.OnRecyclerViewClickListener;
 import tw.com.ian.pwci.Object.Msg;
 import tw.com.ian.pwci.Object.Quiz;
@@ -47,7 +45,6 @@ public class ChatFragment extends Fragment   {
     private Msg msg;
     private Button send;
     private TextToSpeech tts;
-
     public ChatFragment() {
 
     }
@@ -126,7 +123,7 @@ public class ChatFragment extends Fragment   {
 
     /***
      * 按下麥克風
-     */
+*/
     View.OnClickListener micOnClick = new View.OnClickListener() {
 
         @Override

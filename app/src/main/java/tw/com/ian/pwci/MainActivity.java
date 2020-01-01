@@ -9,28 +9,53 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
+import android.speech.SpeechRecognizer;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
 
 import tw.com.ian.pwci.Fragments.ChatFragment;
 import tw.com.ian.pwci.Fragments.GameFragment;
 import tw.com.ian.pwci.Fragments.MedicalFragment;
+import tw.com.ian.pwci.Service.OnBootService;
 
 
 public class MainActivity extends AppCompatActivity {
-    Toolbar toolbar;
-    DrawerLayout drawer;
-    ActionBarDrawerToggle toggle;
-    NavigationView navigationView;
+    private Toolbar toolbar;
+    private DrawerLayout drawer;
+    private ActionBarDrawerToggle toggle;
+    private NavigationView navigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        requestRecordAudioPermission();
+        initToggle();
+       // callOnBootService();
+
+    }
+
+    private void callOnBootService() {
+        Intent it = new Intent();
+        it.setClass(this, OnBootService.class);
+        it.putExtra("Mary","Hello Mary");
+        this.startService(it);
+    }
+
+    private void initToggle() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         drawer =  (DrawerLayout) findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(this,drawer,toolbar,R.string.drawer_open,R.string.drawer_close);
         toggle.setDrawerIndicatorEnabled(true);
@@ -76,14 +101,27 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
     }
+
+
+    private void requestRecordAudioPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            String requiredPermission = Manifest.permission.RECORD_AUDIO;
+            if (checkCallingOrSelfPermission(requiredPermission) == PackageManager.PERMISSION_DENIED) {
+                requestPermissions(new String[]{requiredPermission}, 101);
+            }
+        }
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // The action bar home/up action should open or close the drawer.
-        if (toggle.onOptionsItemSelected(item)) {
+         if (toggle.onOptionsItemSelected(item)) {
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+
+
 }

@@ -2,9 +2,14 @@ package tw.com.ian.pwci.Object;
 
 import java.io.Serializable;
 
+
+/**
+ *  聊天室對話類別
+ *
+ * */
 public class Msg implements Serializable {
-    private String msg;
-    private TYPE type;
+    private String msg;  //訊息文字
+    private TYPE type;  // 訊息模式，SENT / RECEIVED
 
     public enum TYPE{
         RECEIVED,

@@ -3,33 +3,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorGray"
     tools:context=".Fragments.GameFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/parent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="match_parent">
 
-        android:orientation="vertical">
-   <FrameLayout
-       android:id="@+id/viewport"
-       android:layout_width="500dp"
-       android:layout_height="500dp"
-       android:paddingTop="20dp"
-       android:layout_gravity="center"
-       />
 
-   <TextView
-        android:id="@+id/tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="我是聊天室" />
 
-   <Button
-       android:id="@+id/mread"
-       android:text="朗讀"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"/>
-    </LinearLayout>
+        <Button
+            android:id="@+id/send"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:text="Send"
+
+            />
+
+        <ImageView
+            android:id="@+id/mic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/ic_mic_24px" />
+
+        <EditText
+            android:id="@+id/inputText"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@id/mic"
+            android:background="@color/colorYellow" />
+
+        <FrameLayout
+            android:id="@+id/viewport"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_above="@+id/inputText"
+            android:paddingTop="2dp" />
+
+
+
+    </RelativeLayout>
 </FrameLayout>

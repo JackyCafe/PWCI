@@ -31,6 +31,8 @@ public class DBHelp extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(UserProfileDAO.CREATE_TABLE);
         db.execSQL(QuizDAO.CREATE_TABLE);
+        db.execSQL(GameDAO.CREATE_TABLE);
+        db.execSQL(GameLevelDAO.CREATE_TABLE);
      }
 
     @Override
