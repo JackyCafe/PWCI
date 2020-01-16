@@ -84,13 +84,17 @@ public class MainActivity extends AppCompatActivity {
 
                 try {
                     fragment = (Fragment) fragmentClass.newInstance();
+                    // Insert the fragment by replacing any existing fragment
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
                 } catch (Exception e) {
-                    e.printStackTrace();
+                   for (StackTraceElement s :e.getStackTrace())
+                   {
+                       Log.v("Jacky",s.toString());
+                   }
                 }
 
-                // Insert the fragment by replacing any existing fragment
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+
 
                 // Highlight the selected item has been done by NavigationView
                 menuItem.setChecked(true);

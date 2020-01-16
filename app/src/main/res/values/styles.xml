@@ -7,5 +7,14 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <style name="style_Tab">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:button">@null</item>
+        <item name="android:background">#00bbff</item>
 
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textSize">24dp</item>
+        <item name="android:padding">3dp</item>
+    </style>
 </resources>
