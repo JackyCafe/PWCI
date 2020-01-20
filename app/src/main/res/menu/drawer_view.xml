@@ -18,6 +18,7 @@
             <menu>
                 <group android:checkableBehavior="single">
                     <item
+                        android:id="@+id/setup_fragment"
                         android:title="設定" />
                     <item
                         android:title="登入" />

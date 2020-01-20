@@ -22,6 +22,21 @@ public class MedicationNoticeFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public static MedicationNoticeFragment newInstance()
+    {
+        MedicationNoticeFragment fragment = new MedicationNoticeFragment();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

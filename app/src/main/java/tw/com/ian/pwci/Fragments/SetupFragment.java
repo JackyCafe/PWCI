@@ -3,15 +3,14 @@ package tw.com.ian.pwci.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -23,23 +22,17 @@ import tw.com.ian.pwci.Adapter.ViewPagerAdapter;
 import tw.com.ian.pwci.R;
 import tw.com.ian.pwci.Util.Initializer;
 
-
-public class MedicalFragment extends Fragment {
-
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class SetupFragment extends Fragment {
     TabLayout tabLayout;
     ViewPager2 viewPager;
-    String[] tabs = {"慢籤回診","用藥須知","用藥提醒","用藥紀錄"};
+    String[] tabs = {"常用設定","常用醫師設定"};
     Initializer app;
 
-    public MedicalFragment() {
-
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-
+    public SetupFragment() {
+        // Required empty public constructor
     }
 
     @Override
@@ -51,29 +44,30 @@ public class MedicalFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_medical, container, false);
-        viewPager = v.findViewById(R.id.view_pager);
-        tabLayout = v.findViewById(R.id.tabs);
-
+        View v = inflater.inflate(R.layout.fragment_setup, container, false);
+        viewPager = v.findViewById(R.id.viewpager_setup);
+        tabLayout = v.findViewById(R.id.tabs_setup);
         viewPager.setAdapter(createAdapter());
+
         new TabLayoutMediator(tabLayout, viewPager,
                 new TabLayoutMediator.TabConfigurationStrategy() {
                     @Override public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-                         tab.setText(tabs[position]);
+                        tab.setText(tabs[position]);
                     }
                 }).attach();
 
-        return v;
+       return v;
     }
 
     private ViewPagerAdapter createAdapter() {
         List<Fragment> allFragment = new ArrayList<>();
-         allFragment.add(ConsultFragment.newInstance());//慢簽回診
-        allFragment.add(MedicationStyleFragment.newInstance());//用藥須知
-        allFragment.add( MedicationNoticeFragment.newInstance());//用藥提醒
-        allFragment.add(MedicationRecordFragment.newInstance()); //用藥紀錄
+        allFragment.add(GeneralSetupFragment.newInstance());//通用設定
+        allFragment.add(DepartmentFragment.newInstance()); //常用科別
+
         ViewPagerAdapter adapter = new ViewPagerAdapter(this,allFragment);
+
         return adapter;
     }
+
 
 }

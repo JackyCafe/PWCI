@@ -15,6 +15,12 @@ import tw.com.ian.pwci.R;
 
 public class MedicationStyleFragment extends Fragment {
 
+
+    public static MedicationStyleFragment newInstance(){
+        MedicationStyleFragment fragment = new MedicationStyleFragment();
+        return  fragment ;
+    }
+
     public MedicationStyleFragment() {
      }
 
@@ -24,7 +30,9 @@ public class MedicationStyleFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
 
+        }
     }
 
     @Override

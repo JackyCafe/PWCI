@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import tw.com.ian.pwci.Object.Consult;
+
 
 public class DBHelp extends SQLiteOpenHelper {
     static SQLiteDatabase database;
@@ -33,6 +35,8 @@ public class DBHelp extends SQLiteOpenHelper {
         db.execSQL(QuizDAO.CREATE_TABLE);
         db.execSQL(GameDAO.CREATE_TABLE);
         db.execSQL(GameLevelDAO.CREATE_TABLE);
+        db.execSQL(DepartmentDAO.CREATE_TABLE);
+        db.execSQL(ConsultDAO.CREATE_TABLE);
      }
 
     @Override

@@ -25,6 +25,7 @@ import com.google.android.material.navigation.NavigationView;
 import tw.com.ian.pwci.Fragments.ChatFragment;
 import tw.com.ian.pwci.Fragments.GameFragment;
 import tw.com.ian.pwci.Fragments.MedicalFragment;
+import tw.com.ian.pwci.Fragments.SetupFragment;
 import tw.com.ian.pwci.Service.OnBootService;
 
 
@@ -77,6 +78,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.game_fragment:
                         fragmentClass = GameFragment.class;
+                        break;
+                    case R.id.setup_fragment:
+                        fragmentClass = SetupFragment.class;
                         break;
                     default:
                         fragmentClass = MedicalFragment.class;
