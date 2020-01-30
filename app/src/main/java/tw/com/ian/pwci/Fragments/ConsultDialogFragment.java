@@ -45,6 +45,8 @@ public class ConsultDialogFragment extends DialogFragment {
     private DatePicker datePicker1,datePicker2,datePicker3;
     private Button save;
 
+    
+
     public static ConsultDialogFragment newInstance(String args1) {
         ConsultDialogFragment frg = new ConsultDialogFragment();
         Bundle bundle = new Bundle();
@@ -67,8 +69,7 @@ public class ConsultDialogFragment extends DialogFragment {
 
         if (getArguments() != null) {
             date1 = getArguments().getString(param1);
-            app.logv("dialog :"+date1);
-        }
+         }
     }
 
 
@@ -100,7 +101,7 @@ public class ConsultDialogFragment extends DialogFragment {
                 Consult consult = new Consult((long)0,department,doctor,date1,num,date2,date3);
                 ConsultDAO dao = new ConsultDAO(getContext());
                 dao.insert(consult);
-                app.logv(dao.getAll().toString());
+                dismiss();
             }
         });
         return view;
