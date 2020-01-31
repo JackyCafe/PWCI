@@ -3,8 +3,6 @@ package tw.com.ian.pwci.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,16 +13,10 @@ import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import androidx.transition.Visibility;
-
-import java.util.Date;
 import java.util.List;
-
 import tw.com.ian.pwci.DAO.ConsultDAO;
 import tw.com.ian.pwci.DAO.DepartmentDAO;
 import tw.com.ian.pwci.Object.Consult;
@@ -44,32 +36,55 @@ public class ConsultDialogFragment extends DialogFragment {
     private LinearLayout consult1,consult2;
     private DatePicker datePicker1,datePicker2,datePicker3;
     private Button save;
+    int year,month,dayOfMonth;
 
-    
+    public interface NoticeDialogListener {
+        public void onDialogPositiveClick();
+        public void onDialogNegativeClick();
+    }
+    NoticeDialogListener mListener;
 
-    public static ConsultDialogFragment newInstance(String args1) {
+
+
+
+    public static ConsultDialogFragment newInstance(int param1,int param2,int param3) {
         ConsultDialogFragment frg = new ConsultDialogFragment();
         Bundle bundle = new Bundle();
-        if (args1 != null) {
-            bundle.putString(param1, args1);
-        }
+        bundle.putInt("year",param1);
+        bundle.putInt("month",param2);
+        bundle.putInt("date",param3);
         frg.setArguments(bundle);
         return frg;
     }
 
+
+
+
     @Override
     public void onAttach(@NonNull Context context) {
+
         super.onAttach(context);
         app = (Initializer) getActivity().getApplication();
+        try {
+             mListener = (NoticeDialogListener) getTargetFragment();
+        } catch (ClassCastException e) {
+            // The activity doesn't implement the interface, throw exception
+            throw new ClassCastException(e.toString()
+                    + " must implement NoticeDialogListener");
+        }
+
     }
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         if (getArguments() != null) {
-            date1 = getArguments().getString(param1);
-         }
+            year = getArguments().getInt("year");
+            month= getArguments().getInt("month");
+            dayOfMonth = getArguments().getInt("date");
+        }
+
     }
 
 
@@ -78,12 +93,14 @@ public class ConsultDialogFragment extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_consult_dialog,container,false);
-        departmentDAO = new DepartmentDAO(getContext());
+         departmentDAO = new DepartmentDAO(getContext());
         initNumPicker(view);
         initSpinner(view);
         datePicker1 = view.findViewById(R.id.date1);
         datePicker2 = view.findViewById(R.id.date2);
         datePicker3 = view.findViewById(R.id.date3);
+        datePicker1.updateDate(year,month,dayOfMonth);
+
         save = view.findViewById(R.id.save_btn);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,6 +118,8 @@ public class ConsultDialogFragment extends DialogFragment {
                 Consult consult = new Consult((long)0,department,doctor,date1,num,date2,date3);
                 ConsultDAO dao = new ConsultDAO(getContext());
                 dao.insert(consult);
+                mListener.onDialogPositiveClick();
+
                 dismiss();
             }
         });

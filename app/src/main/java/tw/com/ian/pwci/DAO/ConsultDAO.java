@@ -4,14 +4,12 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import tw.com.ian.pwci.Interface.IDAO;
 import tw.com.ian.pwci.Object.Consult;
-import tw.com.ian.pwci.Util.Misc;
 
 public class ConsultDAO extends IDAO<Consult> {
     static String TABLE_NAME = "CONSULT";  //回診
@@ -89,7 +87,6 @@ public class ConsultDAO extends IDAO<Consult> {
 
     @Override
     protected Consult getRecord(Cursor c) {
-
         Consult consult = new Consult();
         consult.setDepartment(c.getString(c.getColumnIndex(department_column)));
         consult.setDoctor(c.getString(c.getColumnIndex(doctor_column)));

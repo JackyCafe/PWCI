@@ -1,17 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/consult_frame"
     tools:context=".Fragments.ConsultFragment">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
 
+        >
     <CalendarView
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/calendar_view"
         android:firstDayOfWeek="2"
-        android:layout_width="match_parent"
+        app:layout_constraintVertical_chainStyle="spread_inside"
+         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/consult_recycle_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorYellow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calendar_view"
+            tools:listitem="@layout/consult_item"/>
 
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
