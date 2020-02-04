@@ -1,30 +1,23 @@
 package tw.com.ian.pwci.Fragments;
-
-
 import android.content.Context;
-import android.content.IntentFilter;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Message;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
-
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
-
 import tw.com.ian.pwci.Adapter.ConsultAdapter;
 import tw.com.ian.pwci.DAO.ConsultDAO;
 import tw.com.ian.pwci.Object.Consult;
 import tw.com.ian.pwci.R;
 import tw.com.ian.pwci.Util.Initializer;
+import tw.com.ian.pwci.Util.Misc;
 
 
 public class ConsultFragment extends Fragment implements ConsultDialogFragment.NoticeDialogListener{
@@ -35,8 +28,9 @@ public class ConsultFragment extends Fragment implements ConsultDialogFragment.N
     RecyclerView recyclerView;
     ConsultAdapter adpater;
     List<Consult> datas;
-
+    SimpleDateFormat sdf ;
     ConsultDialogFragment dialog;
+    String dd = "";
     public ConsultFragment() {
 
     }
@@ -45,15 +39,11 @@ public class ConsultFragment extends Fragment implements ConsultDialogFragment.N
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         app = (Initializer) getActivity().getApplication();
-
-
-
     }
 
     public static ConsultFragment newInstance() {
         ConsultFragment fragment = new ConsultFragment();
         Bundle args = new Bundle();
-
         fragment.setArguments(args);
         return fragment;
     }
@@ -91,11 +81,28 @@ public class ConsultFragment extends Fragment implements ConsultDialogFragment.N
             }
         });
 
+        calendarView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                app.logv("setOnClickListener");
+            }
+        });
+        long calendar_date = calendarView.getDate();
+        sdf = new SimpleDateFormat("yyyy/MM/dd");
+        String selectedDate = sdf.format(new Date(calendar_date));
         dao = new ConsultDAO(getContext());
         recyclerView = v.findViewById(R.id.consult_recycle_view);
         RecyclerView.LayoutManager layout = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layout);
-        datas = dao.getAll();
+
+
+        try {
+            sdf=new SimpleDateFormat(Misc.YYYYMM);
+            dd = sdf.format(calendarView.getDate());
+        }catch (Exception e){
+
+        }
+        datas = dao.getByDate(dd);
         adpater = new ConsultAdapter(datas);
         recyclerView.setAdapter(adpater);
         return v;
@@ -104,7 +111,7 @@ public class ConsultFragment extends Fragment implements ConsultDialogFragment.N
 
     @Override
     public void onDialogPositiveClick() {
-        datas = dao.getAll();
+        datas = dao.getByDate(dd);
         adpater = new ConsultAdapter(datas);
         adpater.notifyDataSetChanged();
         recyclerView.setAdapter(adpater);

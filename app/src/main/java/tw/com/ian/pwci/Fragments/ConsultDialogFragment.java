@@ -27,7 +27,7 @@ import tw.com.ian.pwci.Util.Initializer;
 public class ConsultDialogFragment extends DialogFragment {
     private static String param1 = "date";
     private String date1 = null;
-    private Initializer app;
+ //   private Initializer app;
     private NumberPicker numberPicker;
     private Spinner consult_department,consult_doctor,choice;
     private DepartmentDAO departmentDAO;
@@ -64,7 +64,7 @@ public class ConsultDialogFragment extends DialogFragment {
     public void onAttach(@NonNull Context context) {
 
         super.onAttach(context);
-        app = (Initializer) getActivity().getApplication();
+       // app = (Initializer) getActivity().getApplication();
         try {
              mListener = (NoticeDialogListener) getTargetFragment();
         } catch (ClassCastException e) {
@@ -109,12 +109,20 @@ public class ConsultDialogFragment extends DialogFragment {
                 String doctor = consult_doctor.getSelectedItem().toString();
                 String date1 = null,date2= null,date3 = null;
                 int num = numberPicker.getValue();
+                String y,m,d;
                 if (choice.getSelectedItemPosition()==0) {
-                    date1 = datePicker1.getYear() + "/" + (datePicker1.getMonth()+1)  + "/" + datePicker1.getDayOfMonth();
+                     m = (datePicker1.getMonth()+1<10? "0"+(datePicker1.getMonth()+1):""+datePicker1.getMonth()+1);
+                     d = (datePicker1.getDayOfMonth()+1<10? "0"+(datePicker1.getDayOfMonth()):""+datePicker1.getDayOfMonth());
+                        date1 = datePicker1.getYear() +m+d;
+
                 }else {
-                    date2 = datePicker2.getYear() + "/" + (datePicker2.getMonth()+1)  + "/" + datePicker2.getDayOfMonth();
-                    date3 = datePicker3.getYear() + "/" + (datePicker3.getMonth()+1)  + "/" + datePicker3.getDayOfMonth();
-                }
+                    m = (datePicker2.getMonth()+1<10? "0"+(datePicker2.getMonth()+1):""+datePicker2.getMonth()+1);
+                    d = (datePicker2.getDayOfMonth()+1<10? "0"+(datePicker2.getDayOfMonth()):""+datePicker2.getDayOfMonth());
+                    date2 = datePicker2.getYear() +m+d;
+                    m = (datePicker3.getMonth()+1<10? "0"+(datePicker3.getMonth()+1):""+datePicker3.getMonth()+1);
+                    d = (datePicker3.getDayOfMonth()+1<10? "0"+(datePicker3.getDayOfMonth()):""+datePicker3.getDayOfMonth());
+                    date3 = datePicker3.getYear() +m+d;
+                 }
                 Consult consult = new Consult((long)0,department,doctor,date1,num,date2,date3);
                 ConsultDAO dao = new ConsultDAO(getContext());
                 dao.insert(consult);

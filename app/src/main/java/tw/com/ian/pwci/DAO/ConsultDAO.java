@@ -3,6 +3,7 @@ package tw.com.ian.pwci.DAO;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,10 +26,10 @@ public class ConsultDAO extends IDAO<Consult> {
             id_column + " Integer primary key autoincrement, " +
             department_column + " text," +
             doctor_column + " text," +
-            date1_column + " text," +
+            date1_column + " integer," +
             number_column + " integer," +
-            date2_column + " text," +
-            date3_column + " text " +
+            date2_column + " integer," +
+            date3_column + " integer " +
             " )";
 
     public ConsultDAO(Context context) {
@@ -81,7 +82,21 @@ public class ConsultDAO extends IDAO<Consult> {
             consults.add(getRecord(c));
         }
 
+        return consults;
+    }
 
+
+    public List<Consult> getByDate(String dd){
+        List<Consult> consults = new ArrayList<>();
+        String from_date = dd+"01";
+        String end_date = dd+31;
+        //String[] columns = new String[]{id_column,department_column,doctor_column,date1_column,number_column,date2_column,date3_column};
+        String where =  date1_column + " >= ? and " +date1_column +"<=?";
+        //Cursor c = db.query(TABLE_NAME, null, null, null, null, null, null);
+        Cursor c = db.rawQuery("SELECT * FROM "+ TABLE_NAME +" WHERE "+date1_column+" >=? AND "+date1_column +" <=?", new String[]{from_date,end_date});
+        while (c.moveToNext()) {
+            consults.add(getRecord(c));
+        }
         return consults;
     }
 

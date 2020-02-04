@@ -1,6 +1,9 @@
 package tw.com.ian.pwci.Object;
 
+import android.util.Log;
+
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Consult implements Serializable {
@@ -23,7 +26,10 @@ public class Consult implements Serializable {
         this.number = number;
         this.date2 = date2;
         this.date3 = date3;
+
     }
+
+
 
     public Long getId() {
         return id;
@@ -81,16 +87,18 @@ public class Consult implements Serializable {
         this.date3 = date3;
     }
 
+
+
     @Override
     public String toString() {
         return "Consult{" +
                 "id=" + id +
                 ", Department='" + Department + '\'' +
                 ", Doctor='" + Doctor + '\'' +
-                ", date1=" + date1 +
+                ", date1='" + date1 + '\'' +
                 ", number=" + number +
-                ", date2=" + date2 +
-                ", date3=" + date3 +
+                ", date2='" + date2 + '\'' +
+                ", date3='" + date3 + '\'' +
                 '}';
     }
 }

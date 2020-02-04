@@ -10,6 +10,7 @@
         android:id="@+id/consult_dept"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
         android:text="consult_dept"
 
         />
@@ -18,6 +19,7 @@
         android:id="@+id/consult_doctor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
         android:text="consult_doctor"
         />
 
@@ -25,6 +27,7 @@
         android:id="@+id/consult_date1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
         android:text="consult_date1"
         />
 
@@ -32,6 +35,7 @@
         android:id="@+id/consult_date2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
         android:text="consult_date2"
 
         />
@@ -40,6 +44,7 @@
         android:id="@+id/consult_date3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
         android:text="consult_date3"
 
         />

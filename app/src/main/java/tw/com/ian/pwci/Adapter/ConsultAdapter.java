@@ -1,5 +1,6 @@
 package tw.com.ian.pwci.Adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,9 +47,16 @@ public class ConsultAdapter extends RecyclerView.Adapter<ConsultAdapter.VH> {
 
     @Override
     public void onBindViewHolder(@NonNull VH holder, int position) {
-        holder.dept.setText(datas.get(position).getDepartment());
-        holder.doctor.setText(datas.get(position).getDoctor());
-        holder.date1.setText(datas.get(position).getDate1());
+        holder.dept.setText(datas.get(position).getDepartment()+"   ");
+        holder.doctor.setText(datas.get(position).getDoctor()+"   ");
+        String sdate,year,month,date;
+        sdate  = datas.get(position).getDate1();
+        year = sdate.substring(0,4);
+        //Log.v("Jacky","onBindViewHolder"+sdate);
+        month = sdate.substring(5,6);
+        date = sdate.substring(7,8);
+        sdate = year+"/"+month+"/"+date;
+        holder.date1.setText(" 回診  "+ sdate);
         holder.date2.setText(datas.get(position).getDate2());
         holder.date3.setText(datas.get(position).getDate3());
     }

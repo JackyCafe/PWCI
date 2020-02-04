@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.MedicalMainFragment">
+
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+       <Button
+           android:id="@+id/medical_main_send"
+           android:text="Send"
+           android:layout_width="wrap_content"
+           android:layout_height="50dp"
+           android:layout_alignParentRight="true"
+           android:layout_alignParentBottom="true"
+
+           />
+       <ImageView
+           android:id = "@+id/medical_main_mic"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:src="@drawable/ic_mic_24px"
+           android:layout_alignParentLeft="true"
+           android:layout_alignParentBottom="true"
+           />
+       <EditText
+           android:id="@+id/medical_main_inputText"
+           android:layout_width="match_parent"
+           android:layout_height="45dp"
+           android:layout_alignParentBottom="true"
+           android:background="@color/colorYellow"
+           android:layout_toRightOf="@id/medical_main_mic"
+           />
+
+
+       <androidx.recyclerview.widget.RecyclerView
+           android:id="@+id/msgView"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+
+           android:layout_above="@id/medical_main_inputText"
+           android:layout_alignParentLeft="true"
+           android:layout_alignParentTop="true"
+           android:layout_alignParentRight="true"
+           android:background="@color/colorGray"
+           tools:listitem="@layout/items" />
+
+
+   </RelativeLayout>
+
+</FrameLayout>
