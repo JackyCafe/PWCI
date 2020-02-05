@@ -28,7 +28,7 @@ public class MedicalFragment extends Fragment {
 
     TabLayout tabLayout;
     ViewPager2 viewPager;
-    String[] tabs = {"主頁","慢籤回診","用藥須知","用藥紀錄"};
+    String[] tabs = {"主頁","慢籤回診","用藥紀錄"};
     Initializer app;
 
     public MedicalFragment() {
@@ -70,7 +70,6 @@ public class MedicalFragment extends Fragment {
         List<Fragment> allFragment = new ArrayList<>();
         allFragment.add(MedicalMainFragment.newInstance());
         allFragment.add(ConsultFragment.newInstance());//慢簽回診
-        allFragment.add(MedicationStyleFragment.newInstance());//用藥須知
         allFragment.add(MedicationRecordFragment.newInstance()); //用藥紀錄
         ViewPagerAdapter adapter = new ViewPagerAdapter(this,allFragment);
         return adapter;

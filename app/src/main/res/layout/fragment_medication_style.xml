@@ -3,12 +3,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.MedicationStyleFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical">
 
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="藥名"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/medical_name"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.tiper.MaterialSpinner
+                android:id="@+id/dose_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:spinnerMode="bottomsheet"
+                app:helperTextEnabled="true"
+                app:boxBackgroundMode="outline"
+                app:boxBackgroundColor="@color/colorYellow"
+                android:hint="劑量"
+                />
+
+        <com.tiper.MaterialSpinner
+            android:id="@+id/style_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:spinnerMode="bottomsheet"
+            android:hint="用藥方式"
+            />
+
+
+
+    </LinearLayout>
 </FrameLayout>

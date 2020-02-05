@@ -28,7 +28,7 @@ import tw.com.ian.pwci.Util.Initializer;
 public class SetupFragment extends Fragment {
     TabLayout tabLayout;
     ViewPager2 viewPager;
-    String[] tabs = {"常用設定","常用醫師設定"};
+    String[] tabs = {"常用設定","常用醫師設定","用藥須知"};
     Initializer app;
 
     public SetupFragment() {
@@ -63,7 +63,7 @@ public class SetupFragment extends Fragment {
         List<Fragment> allFragment = new ArrayList<>();
         allFragment.add(GeneralSetupFragment.newInstance());//通用設定
         allFragment.add(DepartmentFragment.newInstance()); //常用科別
-
+        allFragment.add(MedicationStyleFragment.newInstance());//用藥須知
         ViewPagerAdapter adapter = new ViewPagerAdapter(this,allFragment);
 
         return adapter;
