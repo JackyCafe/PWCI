@@ -43,7 +43,12 @@
             android:hint="用藥方式"
             />
 
-
+        <Button
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="儲存"
+            />
 
     </LinearLayout>
 </FrameLayout>

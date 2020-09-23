@@ -10,4 +10,8 @@
     <string name="save">儲存</string>
     <string name="cancel">取消</string>
     <string name="cinsult">回診紀錄</string>
+    <string name="preview_scaled">辨識</string>
+    <string name="detect">AI 辨識</string>
+    <string name="clear">清除</string>
+    <string name="not_detected">辨識不出來</string>
 </resources>

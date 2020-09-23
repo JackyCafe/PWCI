@@ -14,17 +14,14 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.speech.RecognizerIntent;
-import android.speech.SpeechRecognizer;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
-
 import tw.com.ian.pwci.Fragments.ChatFragment;
 import tw.com.ian.pwci.Fragments.GameFragment;
 import tw.com.ian.pwci.Fragments.MedicalFragment;
+import tw.com.ian.pwci.Fragments.NumberFragment;
 import tw.com.ian.pwci.Fragments.SetupFragment;
 import tw.com.ian.pwci.Service.OnBootService;
 
@@ -41,16 +38,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         requestRecordAudioPermission();
         initToggle();
-       // callOnBootService();
 
     }
 
-    private void callOnBootService() {
-        Intent it = new Intent();
-        it.setClass(this, OnBootService.class);
-        it.putExtra("Mary","Hello Mary");
-        this.startService(it);
-    }
+
 
     private void initToggle() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -78,6 +69,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.game_fragment:
                         fragmentClass = GameFragment.class;
+                        break;
+                    case R.id.number_fragment:
+                        fragmentClass = NumberFragment.class;
                         break;
                     case R.id.setup_fragment:
                         fragmentClass = SetupFragment.class;

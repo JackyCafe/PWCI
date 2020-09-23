@@ -72,8 +72,7 @@ public class DepartmentFragment extends Fragment {
                 department = new Department(0,str_department,str_doctor);
                 dao.insert(department);
 
-                app.logv(dao.getAll().toString());
-             }
+              }
          });
          return v;
     }

@@ -4,16 +4,18 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/medical_fragment"
-            android:icon="@drawable/ic_one"
             android:title="醫學院" />
         <item
             android:id="@+id/chat_fragment"
-            android:icon="@drawable/ic_two"
             android:title="聊天室" />
         <item
             android:id="@+id/game_fragment"
-            android:icon="@drawable/ic_three"
             android:title="遊戲室" />
+
+        <item
+            android:id="@+id/number_fragment"
+            android:title="寫數字" />
+
         <item android:title="其他">
             <menu>
                 <group android:checkableBehavior="single">

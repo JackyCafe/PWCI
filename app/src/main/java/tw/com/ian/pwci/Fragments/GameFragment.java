@@ -195,7 +195,7 @@ public class GameFragment<ansLintener> extends Fragment {
         app.initTTS();
     }
 
-    /*按下麥克風按鈕，產稱的圖案*/
+    /*按下麥克風按鈕，產生的圖案*/
     View.OnClickListener micOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
